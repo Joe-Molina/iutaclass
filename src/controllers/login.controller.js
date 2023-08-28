@@ -26,17 +26,15 @@ export const postLogin = async (req, res) => {
           const password = data.password;
           const hash = userdata[0].password;
 
-          bcrypt.compare(password, hash, (err, isMatch) => {
-            if (!isMatch) {
-              res.render("login", { error: "incorrect password" });
-            } else {
-              req.session.loggedin = true;
-              req.session.name = userdata[0].name;
-              req.session.email = userdata[0].email;
+          if(password !== hash){
+            res.render("login", { error: "incorrect password" });
+          } else {
+            req.session.loggedin = true;
+            req.session.name = userdata[0].name;
+            req.session.email = userdata[0].email;
 
-              res.redirect("/");
-            }
-          });
+            res.redirect("/");
+          }
         } else {
           res.render("login", { error: "el usuario no existe" });
         }

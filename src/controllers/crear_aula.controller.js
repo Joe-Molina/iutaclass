@@ -1,0 +1,20 @@
+import bodyParser from "body-parser";
+import axios from "axios";
+import moment from "moment";
+import session from "express-session";
+import myConnection from 'express-myconnection'
+
+export const getCrearAula = async (req, res) => {
+    res.render("crearaula");
+};
+
+export const postCrearAula = async (req, res) => {
+    const data = req.body;
+
+    req.getConnection((err, conn) => {
+        conn.query('INSERT INTO aulas SET ?', [data], (err, rows) => {
+            console.log(data)
+            res.redirect('/crearaula')
+        })
+    });
+};
