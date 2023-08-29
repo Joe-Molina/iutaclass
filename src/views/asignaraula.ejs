@@ -10,7 +10,7 @@
     <h1>IUTACLASS</h1>
     <h2>crear aula</h2>
     
-    <form action="/crearaula" method="POST">
+    <form action="/asignaraula" method="POST">
 
 
         <label for="select-docente">seleciona el docente encargado</label>
@@ -20,8 +20,15 @@
                 <option value="<%=docente.id%>"><%=docente.name%></option>
                 <% }); %>
           </select>
-        <input type="text" name="materia" id="" placeholder="introduce la materia">
-        <input type="text" name="seccion" id="" placeholder="introduce la seccion">
+
+          <label for="select-estudiante">seleciona el docente encargado</label>
+          <select name="aula_id" id="select-docente">
+
+            <% docentes.forEach(docente => {%>
+                <option value="<%=docente.id%>"><%=docente.name%></option>
+                <% }); %>
+          </select>
+
         <input type="submit" value="Enviar" class="submit">
     </form>
 

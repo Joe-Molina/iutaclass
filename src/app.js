@@ -17,6 +17,7 @@ import login from "./routes/login.route.js"
 import register from "./routes/register.route.js"
 import indexClass from "./routes/index_estudiante.route.js"
 import crearAulas from "./routes/crear_aula.route.js"
+import asignarAulas from "./routes/asignar_aula.route.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,7 +52,7 @@ app.use(register)
 app.use(login)
 app.use(indexClass)
 app.use(crearAulas)
-
+app.use(asignarAulas)
 
 //route not found
 app.use((req, res, next) => {
