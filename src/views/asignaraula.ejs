@@ -13,19 +13,19 @@
     <form action="/asignaraula" method="POST">
 
 
-        <label for="select-docente">seleciona el docente encargado</label>
+        <label for="select-docente">seleciona estudiante</label>
         <select name="user_id" id="select-docente">
 
-            <% docentes.forEach(docente => {%>
-                <option value="<%=docente.id%>"><%=docente.name%></option>
+            <% estudiantes.forEach(estudiante => {%>
+                <option value="<%=estudiante.id%>"><%=estudiante.name%></option>
                 <% }); %>
           </select>
 
-          <label for="select-estudiante">seleciona el docente encargado</label>
+          <label for="select-estudiante">seleciona aula a asignar</label>
           <select name="aula_id" id="select-docente">
 
-            <% docentes.forEach(docente => {%>
-                <option value="<%=docente.id%>"><%=docente.name%></option>
+            <% aulas.forEach(aula => {%>
+                <option value="<%=aula.id%>"><%=aula.materia%></option>
                 <% }); %>
           </select>
 

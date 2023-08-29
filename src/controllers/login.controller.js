@@ -30,6 +30,7 @@ export const postLogin = async (req, res) => {
             res.render("login", { error: "incorrect password" });
           } else {
             req.session.loggedin = true;
+            req.session.user = userdata[0].id;
             req.session.name = userdata[0].name;
             req.session.email = userdata[0].email;
 

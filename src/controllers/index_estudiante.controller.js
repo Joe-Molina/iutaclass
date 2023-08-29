@@ -4,37 +4,60 @@ import moment from "moment";
 import session from "express-session";
 import myConnection from 'express-myconnection'
 
+
 export const getClass = async (req, res) => {
-    if (req.session.loggedin == true) {
-      const user = req.session.name;
-      const email = req.session.email;
-  
-      //const [rows] = await pool.query("SELECT * FROM notes");
-  
-      req.getConnection((err, conn) => {
-        conn.query("SELECT id FROM users WHERE email = ?",
-        [email],
-        (err, userdata) => {
-  
-  
-  
-          console.log(userdata[0])
-  
-          req.session.idUser = userdata[0].id
-            
+
+    try {
+        if (req.session.loggedin == true) {
+          const id = req.session.user;
+          const user = req.session.name;
+          const email = req.session.email;
+
+          console.log(id)
+
+          await req.getConnection((err, conn) => {
+            conn.query(
+              "SELECT * FROM Alumnos_aula WHERE user_id = ?", [id] ,
+              (err, userdata) => {
+                if (err) {
+                  console.error('Error en la consulta:', err);
+                  res.status(500).send('Error en la consulta');
+                  return;
+                }
+
+                const aulaIds = userdata.map((row) => row.aula_id);
+
+                conn.query(
+                  "SELECT * FROM aulas WHERE id IN (?)",
+                  [aulaIds],
+                  (err, aulaData) => {
+                    if (err) {
+                      console.error('Error en la segunda consulta:', err);
+                      res.status(500).send('Error en la segunda consulta');
+                      return;
+                    }
           
-          conn.query('SELECT * FROM alumnos_aula WHERE userId = ?',
-          [req.session.idUser],
-          (err, userdata) => {
-            console.log(userdata)
-  
-            res.render("indexClass.ejs", {notes: userdata, user, idUser: req.session.idUser});
-  
-          })
-        });
-      })
-  
-    } else {
+                    console.log(aulaData);
+                    res.render("indexClass", { clases: userdata, aulas: aulaData });
+                  }
+                );
+
+              console.log(userdata)
+
+
+              res.render("indexClass", { clases: userdata });
+            }
+
+            )
+        })
+        } else {
       res.redirect("/login");
-    }
-  };
+      }
+
+
+    } catch (err) {
+    console.error('Error al realizar las consultas:', err);
+    res.status(500).send('Error en las consultas');
+  }
+
+};

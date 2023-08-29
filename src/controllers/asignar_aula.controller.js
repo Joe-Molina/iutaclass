@@ -6,23 +6,48 @@ import myConnection from 'express-myconnection'
 
 export const getAsignarAula = async (req, res) => {
 
-    try {
-
-       const estudiantes =  req.getConnection((err, conn) => {
-            conn.query(
-                "SELECT * FROM users WHERE tipo_usuario = 2')",
-                (err, userdata) => {
-                    return userdata
-                })
-        })
-
-
-
     
 
-        console.log(estudiantes)
+    try {
 
-        //res.render("asingnaraula", { estudiantes, aulas });
+        req.getConnection((err, conn) => {
+            if (err) {
+              console.error('Error al establecer la conexión:', err);
+              res.status(500).send('Error en la conexión a la base de datos');
+              return;
+            }
+        
+            const consulta1 = 'SELECT * FROM users WHERE tipo_usuario = 2';
+            const consulta2 = 'SELECT * FROM aulas';
+        
+            const resultado = {};
+        
+            conn.query(consulta1, (err, rows1) => {
+              if (err) {
+                console.error('Error en la consulta 1:', err);
+                res.status(500).send('Error en la consulta 1');
+                return;
+              }
+        
+              resultado.estudiantes = rows1;
+        
+              conn.query(consulta2, (err, rows2) => {
+                if (err) {
+                  console.error('Error en la consulta 2:', err);
+                  res.status(500).send('Error en la consulta 2');
+                  return;
+                }
+        
+                resultado.aula = rows2;
+
+                console.log(resultado)
+        
+                res.render('asignaraula', {aulas: resultado.aula, estudiantes: resultado.estudiantes})
+              });
+            });
+          });
+
+     
     } catch (err) {
         console.error('Error al realizar las consultas:', err);
         res.status(500).send('Error en las consultas');
@@ -33,9 +58,9 @@ export const postAsignarAula = async (req, res) => {
     const data = req.body;
 
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO aulas SET ?', [data], (err, rows) => {
+        conn.query('INSERT INTO alumnos_aula SET ?', [data], (err, rows) => {
             console.log(data)
-            res.redirect('/crearaula')
+            res.redirect('/asignaraula')
         })
     });
 };
