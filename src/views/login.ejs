@@ -3,24 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/loginregister.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Login</title>
 </head>
 <body>
-    <h1>IUTACLASS</h1>
-    <h2>Ingresar</h2>
+    <img src="/assets/logo.png" alt="" class="logo">
 
-    <form action="/login" method="POST">
-        <input type="email" name="email" id="" placeholder="introduce tu email">
-        <input type="password" name="password" id="" placeholder="introduce tu contrasena">
-        <input type="submit" value="Enviar" class="submit">
-
-        <% if (error) { %>
-        <p><%= error %></p>
-        <% } %>
-    </form>
+    <div class="login-container">
+        <div class="login-img-container">
+            <img src="/assets/loginimg.png" alt="">
+        </div>
+        <div class="login-form-container">
+            <form action="/login" method="POST">
+                <h2>IUTACLASS</h2>
+                <label for="input-email">Correo</label>
+                <input class="form-control" type="email" name="email" id="input-email" placeholder="introduce tu email">
+                <label for="input-password">Contrasena</label>
+                <input class="form-control" type="password" name="password" id="input-password" placeholder="introduce tu contrasena">
+                <input type="submit" value="Enviar" class="submit btn">
+        
+                <% if (error) { %>
+                <p><%= error %></p>
+                <% } %>
+                <p class="switchLogRes">ir al <a href="/register">registro de alumnos</a></p>
+            </form>
+        </div>
+    </div>
     
-    <p class="switchLogRes">ir al <a href="/register">registro de alumnos</a> ahora.</p>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -35,7 +35,14 @@ export const postLogin = async (req, res) => {
             req.session.email = userdata[0].email;
             req.session.userType = userdata[0].tipo_usuario
 
-            res.redirect("/");
+            if(req.session.userType === 2){
+              res.redirect("/");
+            }
+
+            if(req.session.userType === 1) {
+              res.redirect("/docente");
+            }
+
           }
         } else {
           res.render("login", { error: "el usuario no existe" });

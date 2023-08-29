@@ -18,6 +18,8 @@ import register from "./routes/register.route.js"
 import indexClass from "./routes/index_estudiante.route.js"
 import crearAulas from "./routes/crear_aula.route.js"
 import asignarAulas from "./routes/asignar_aula.route.js"
+import indexDocente from "./routes/index_docente.route.js"
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,6 +53,7 @@ app.use(myConnection(mysql, {
 app.use(register)
 app.use(login)
 app.use(indexClass)
+app.use(indexDocente)
 app.use(crearAulas)
 app.use(asignarAulas)
 
