@@ -12,6 +12,10 @@
 
     <h2>mis clases</h2>
     <ul>
+        <% aulas.forEach(aula => { %>
+         <li><p>materia: <%=aula.materia %></p>  <b>seccion: <%=aula.seccion%></b></li>
+        <% }) %>
+
         
     </ul>
 

@@ -33,6 +33,7 @@ export const postLogin = async (req, res) => {
             req.session.user = userdata[0].id;
             req.session.name = userdata[0].name;
             req.session.email = userdata[0].email;
+            req.session.userType = userdata[0].tipo_usuario
 
             res.redirect("/");
           }
