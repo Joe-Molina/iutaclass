@@ -26,7 +26,7 @@ export const postLogin = async (req, res) => {
           const password = data.password;
           const hash = userdata[0].password;
 
-          if(password !== hash){
+          if (password !== hash) {
             res.render("login", { error: "incorrect password" });
           } else {
             req.session.loggedin = true;
@@ -35,13 +35,7 @@ export const postLogin = async (req, res) => {
             req.session.email = userdata[0].email;
             req.session.userType = userdata[0].tipo_usuario
 
-            if(req.session.userType === 2){
-              res.redirect("/");
-            }
-
-            if(req.session.userType === 1) {
-              res.redirect("/docente");
-            }
+            res.redirect("/"); 
 
           }
         } else {

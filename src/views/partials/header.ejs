@@ -1,0 +1,12 @@
+<header>
+    <span>IUTACLASS</span>
+    <% if (session.userType == 2) { %>
+        <h2 class="info-user"><%=session.name%> (Estudiante)</h2>
+        <% } %>
+        <% if (session.userType == 1) { %>
+            <a href="/crearaula">crear aula</a>
+            <a href="/asignaraula">asignar aula</a>
+            <% } %>
+
+    <a href="/logout">salir</a>
+</header>

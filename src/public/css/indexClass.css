@@ -29,6 +29,12 @@ header a{
     text-decoration: none;
 }
 
+.info-user{
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+}
+
 .all-container{
     width: 100vw;
     height: 90vh;
@@ -43,15 +49,33 @@ header a{
 }
 
 .aula-card{
-    width: 200px;
-    height: 80px;
+    width: 170px;
+    height: 70px;
+    margin: 10px;
+    padding: 10px;
+    background-color: none;
+    color: #777777;
+    border-radius: 10px;
+    transition: .3s;
+    border: #707070 thin solid;
+    text-decoration: none;
+}
+
+.aula-card h3{
+    font-size: 16px;
+}
+
+.aula-card:hover{
+    transform: scale(1.1);
 }
 
 .aulas h2{
     text-align: center;
+    color: #777777;
 }
 
 .aula-info{
     width: 80%;
     height: 100%;
 }
+

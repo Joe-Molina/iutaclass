@@ -1,0 +1,12 @@
+<section>
+    <div class="unidades-container">
+        <% unidades.forEach(unidad => { %>
+            <div class="unidad-card">
+                <h3><%=unidad.titulo %></h3>
+                <h4><%=unidad.tipo_evaluacion %></h4>
+                <p><%=unidad.contenido%></p>
+
+            </div>
+        <% }) %>
+    </div>
+</section>

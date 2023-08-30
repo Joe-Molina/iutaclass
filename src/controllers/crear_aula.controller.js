@@ -6,18 +6,22 @@ import myConnection from 'express-myconnection'
 
 export const getCrearAula = async (req, res) => {
 
-    await req.getConnection((err, conn) => {
-        conn.query(
-            "SELECT * FROM users WHERE tipo_usuario = 1",
-            (err, userdata) => {
-
-                console.log(userdata)
-
-                res.render("crearaula", { docentes: userdata });
-            }
-
-        )
-    })
+    if(req.session.userType == 1){
+        await req.getConnection((err, conn) => {
+            conn.query(
+                "SELECT * FROM users WHERE tipo_usuario = 1",
+                (err, userdata) => {
+    
+                    console.log(userdata)
+    
+                    res.render("crearaula", { docentes: userdata, session: req.session});
+                }
+    
+            )
+        })
+    } else {
+        res.redirect('/')
+    }
 };
 
 export const postCrearAula = async (req, res) => {

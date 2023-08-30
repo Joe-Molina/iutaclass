@@ -15,10 +15,10 @@ import {
 } from './config.js'
 import login from "./routes/login.route.js"
 import register from "./routes/register.route.js"
-import indexClass from "./routes/index_estudiante.route.js"
+import index from "./routes/index.route.js"
 import crearAulas from "./routes/crear_aula.route.js"
 import asignarAulas from "./routes/asignar_aula.route.js"
-import indexDocente from "./routes/index_docente.route.js"
+
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -52,10 +52,9 @@ app.use(myConnection(mysql, {
 //routes
 app.use(register)
 app.use(login)
-app.use(indexClass)
-app.use(indexDocente)
-app.use(crearAulas)
 app.use(asignarAulas)
+app.use(crearAulas)
+app.use(index)
 
 //route not found
 app.use((req, res, next) => {

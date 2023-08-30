@@ -9,23 +9,18 @@
     <title>iutaclass</title>
 </head>
 <body>
-    <header>
-        <span>IUTACLASS</span>
-        <a href="/logout">salir</a>
-    </header>
-
+<%- include('partials/header.ejs') %>
     <section class="all-container">
         <article class="aulas">
-            <h2>mis clases</h2>
-            <% aulas.forEach(aula => { %>
-            <div class="aula-card">
-                <h3><%=aula.materia%></h3>
-                <p>seccion: <%=aula.seccion%></p>
-            </div>
-            <% }) %>
+            <% if (session.userType == 2) { %>
+                <%- include('partials/studentComponent/aulas-card.ejs') %>
+            <% } %>
+            
         </article>
         <article class="aula-info">
-
+            <% if (unidades) { %>
+             <%- include('partials/studentComponent/informacion_aula') %>
+            <% } %>
         </article>
 
     </section>

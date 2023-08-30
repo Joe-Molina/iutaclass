@@ -11,40 +11,45 @@ export const getAsignarAula = async (req, res) => {
     try {
 
         req.getConnection((err, conn) => {
-            if (err) {
-              console.error('Error al establecer la conexión:', err);
-              res.status(500).send('Error en la conexión a la base de datos');
-              return;
-            }
-        
-            const consulta1 = 'SELECT * FROM users WHERE tipo_usuario = 2';
-            const consulta2 = 'SELECT * FROM aulas';
-        
-            const resultado = {};
-        
-            conn.query(consulta1, (err, rows1) => {
+            if (req.session.userType == 1) {
               if (err) {
-                console.error('Error en la consulta 1:', err);
-                res.status(500).send('Error en la consulta 1');
+                console.error('Error al establecer la conexión:', err);
+                res.status(500).send('Error en la conexión a la base de datos');
                 return;
               }
-        
-              resultado.estudiantes = rows1;
-        
-              conn.query(consulta2, (err, rows2) => {
+          
+              const consulta1 = 'SELECT * FROM users WHERE tipo_usuario = 2';
+              const consulta2 = 'SELECT * FROM aulas';
+          
+              const resultado = {};
+          
+              conn.query(consulta1, (err, rows1) => {
                 if (err) {
-                  console.error('Error en la consulta 2:', err);
-                  res.status(500).send('Error en la consulta 2');
+                  console.error('Error en la consulta 1:', err);
+                  res.status(500).send('Error en la consulta 1');
                   return;
                 }
-        
-                resultado.aula = rows2;
-
-                console.log(resultado)
-        
-                res.render('asignaraula', {aulas: resultado.aula, estudiantes: resultado.estudiantes})
+          
+                resultado.estudiantes = rows1;
+          
+                conn.query(consulta2, (err, rows2) => {
+                  if (err) {
+                    console.error('Error en la consulta 2:', err);
+                    res.status(500).send('Error en la consulta 2');
+                    return;
+                  }
+          
+                  resultado.aula = rows2;
+  
+                  console.log(resultado)
+          
+                  res.render('asignaraula', {aulas: resultado.aula, estudiantes: resultado.estudiantes})
+  
+                });
               });
-            });
+            } else {
+              res.redirect('/')
+            }
           });
 
      
