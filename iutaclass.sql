@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-08-2023 a las 19:08:48
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 30-08-2023 a las 22:15:03
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `alumnos_aula` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `aula_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `alumnos_aula`
@@ -43,7 +43,9 @@ INSERT INTO `alumnos_aula` (`id`, `user_id`, `aula_id`) VALUES
 (4, 5, 3),
 (5, 5, 4),
 (6, 5, 5),
-(1, 5, 6);
+(1, 5, 6),
+(8, 7, 7),
+(7, 8, 7);
 
 -- --------------------------------------------------------
 
@@ -56,7 +58,7 @@ CREATE TABLE `archivos_evaluacion` (
   `descripcion` varchar(255) NOT NULL,
   `archivo` varchar(255) NOT NULL,
   `evaluacion_unidad_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -69,7 +71,7 @@ CREATE TABLE `aulas` (
   `user_id` int(11) NOT NULL,
   `materia` varchar(60) NOT NULL,
   `seccion` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `aulas`
@@ -81,7 +83,8 @@ INSERT INTO `aulas` (`id`, `user_id`, `materia`, `seccion`) VALUES
 (3, 3, 'algoritmo', 'i1sa'),
 (4, 4, 'algebra', 'i1sa'),
 (5, 3, 'economia', 'i2sa'),
-(6, 4, 'termodinamica', 'i6sa');
+(6, 4, 'termodinamica', 'i6sa'),
+(7, 4, 'fisica', 'i5da');
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,7 @@ CREATE TABLE `calificaciones` (
   `alumno_aula_id` int(11) NOT NULL,
   `evaluacion_unidad_id` int(11) NOT NULL,
   `calificacion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -110,7 +113,15 @@ CREATE TABLE `evaluacion_unidad` (
   `tipo_evaluacion` int(11) NOT NULL,
   `fecha_creacion` date NOT NULL,
   `fecha_culminacion` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `evaluacion_unidad`
+--
+
+INSERT INTO `evaluacion_unidad` (`id`, `aula_id`, `titulo`, `contenido`, `tipo_evaluacion`, `fecha_creacion`, `fecha_culminacion`) VALUES
+(1, 1, 'CALCULO 1', 'ASI SE AHCE UNA SUMA MIRA 1 + 1 = 3', 1, '2023-08-30', '2023-09-15'),
+(2, 1, 'Calculo 2', 'Menti 1 + 1 = 4 pipipipi', 1, '2023-08-30', '2023-09-22');
 
 -- --------------------------------------------------------
 
@@ -124,7 +135,7 @@ CREATE TABLE `users` (
   `email` varchar(60) NOT NULL,
   `password` varchar(60) NOT NULL,
   `tipo_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -137,7 +148,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `tipo_usuario`) VALUES
 (4, 'jefferson', 'jefferson@gmail.com', '1234', 1),
 (5, 'ruben', 'ruben@gmail.com', '1234', 2),
 (6, 'josber', 'josber@gmail.com', '1234', 2),
-(7, 'manuel', 'manuel@gmail.com', '1234', 2);
+(7, 'manuel', 'manuel@gmail.com', '1234', 2),
+(8, 'josee', 'josee@gmail.com', '1234', 2),
+(9, '', 'joee@gmail.com', 'joee', 2);
 
 --
 -- Índices para tablas volcadas
@@ -194,7 +207,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `alumnos_aula`
 --
 ALTER TABLE `alumnos_aula`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `archivos_evaluacion`
@@ -206,7 +219,7 @@ ALTER TABLE `archivos_evaluacion`
 -- AUTO_INCREMENT de la tabla `aulas`
 --
 ALTER TABLE `aulas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `calificaciones`
@@ -218,13 +231,13 @@ ALTER TABLE `calificaciones`
 -- AUTO_INCREMENT de la tabla `evaluacion_unidad`
 --
 ALTER TABLE `evaluacion_unidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
