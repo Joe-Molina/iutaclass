@@ -18,6 +18,7 @@ import register from "./routes/register.route.js"
 import index from "./routes/index.route.js"
 import crearAulas from "./routes/crear_aula.route.js"
 import asignarAulas from "./routes/asignar_aula.route.js"
+import crearUnidad from "./routes/crear_unidad.route.js"
 
 
 
@@ -54,6 +55,7 @@ app.use(register)
 app.use(login)
 app.use(asignarAulas)
 app.use(crearAulas)
+app.use(crearUnidad)
 app.use(index)
 
 //route not found

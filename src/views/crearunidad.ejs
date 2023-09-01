@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/indexClass.css">
+    <link rel="stylesheet" href="/css/crearaula.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>crear aula</title>
+</head>
+
+<body>
+    <%- include('partials/header.ejs') %>
+        <section class="all-container">
+            <article class="aula-info">
+                <h2>Crear Unidad</h2>
+                <form action="/crearunidad" method="POST">
+                    <label for="select-aula">selecione el aula</label>
+                    <select name="aula_id" id="select-aula" class="form-select">
+
+                        <% aulas.forEach(aula=> {%>
+                            <option value="<%=aula.id%>">
+                                <%=aula.materia%> / <%= aula.seccion.toUpperCase() %>
+                            </option>
+                            <% }); %>
+                    </select>
+
+                    <input type="text" class="form-control" placeholder="Titulo" name="titulo">
+                    <textarea name="contenido" id="" class="form-control" placeholder="Escribe el contenido de la unidad aqui..."></textarea>
+                    <input type="text" class="form-control" name="tipo_evaluacion" placeholder="Tipo de Evaluacion">
+                    <label for="">fecha de entrega</label>
+                    <input type="date" name="fecha_culminacion" class="form-control">
+
+                    <input class="submit btn btn-primary" type="submit" value="Enviar" class="submit">
+                </form>
+            </article>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>
