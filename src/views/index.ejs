@@ -12,10 +12,7 @@
 <%- include('partials/header.ejs') %>
     <section class="all-container">
         <article class="aulas">
-            <% if (session.userType == 2) { %>
                 <%- include('partials/studentComponent/aulas-card.ejs') %>
-            <% } %>
-            
         </article>
         <article class="aula-info">
             <% if (unidades) { %>

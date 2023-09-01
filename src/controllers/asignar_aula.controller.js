@@ -11,6 +11,12 @@ export const getAsignarAula = async (req, res) => {
     try {
 
         req.getConnection((err, conn) => {
+
+          
+
+
+
+
             if (req.session.userType == 1) {
               if (err) {
                 console.error('Error al establecer la conexión:', err);
@@ -43,7 +49,7 @@ export const getAsignarAula = async (req, res) => {
   
                   console.log(resultado)
           
-                  res.render('asignaraula', {aulas: resultado.aula, estudiantes: resultado.estudiantes})
+                  res.render('asignaraula', {aulas: resultado.aula, estudiantes: resultado.estudiantes, session: req.session})
   
                 });
               });
