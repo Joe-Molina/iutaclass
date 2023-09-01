@@ -1,0 +1,20 @@
+<section>
+    <div class="unidades-container">
+        <% unidades.forEach(unidad=> { %>
+            <a class="unidad-card" href="*">
+                <p class="unidad-card-title">
+                    <%=unidad.titulo %>
+                </p>
+                <p class="unidad-card-evaluacion">
+                    <%if(unidad.tipo_evaluacion == 1) {%>
+                        Evaluacion: Prueba
+                    <%  }%>
+                </p>
+                <p class="unidad-card-p">
+                    Descripcion: <%=unidad.contenido%>
+                </p>
+
+            </a>
+            <% }) %>
+    </div>
+</section>

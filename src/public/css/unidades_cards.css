@@ -1,0 +1,35 @@
+
+
+.aula-info .unidades-container .unidad-card{
+    display: inline-block;
+    width: 300px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    border: thin solid #5c5c5c;
+    border-radius: 10px;
+    transition: .3s;
+    text-decoration: none;
+    color: #000;
+}
+.unidad-card:hover{
+    transform: scale(1.1);
+    background-color: rgb(235, 235, 235);
+}
+
+.unidad-card-title{
+    font-weight: 700;
+    font-size: 22px; 
+}
+
+.unidad-card-evaluacion{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.unidad-card-p{
+    font-size: 12px;
+    padding: 7px;
+    background-color: rgb(219, 252, 252);
+    border-radius: 20px;
+}
