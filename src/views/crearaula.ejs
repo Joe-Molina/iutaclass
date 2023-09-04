@@ -14,20 +14,45 @@
     <section class="all-container">
         <article class="aula-info">
             <h2>CREAR AULA</h2>
-            <form action="/crearaula" method="POST">
+            <form action="/crearaula" method="POST" class="form-crearaula">
 
 
                 <label for="select-docente">seleciona el docente encargado</label>
-                <select name="user_id" id="select-docente" class="form-select">
+                <select required name="user_id" id="select-docente" class="form-select">
         
                     <% docentes.forEach(docente => {%>
                         <option value="<%=docente.id%>"><%=docente.name%></option>
                         <% }); %>
                   </select>
-                <input class="form-control" type="text" name="materia" id="" placeholder="introduce la materia">
+                <input required class="form-control" type="text" name="materia" id="" placeholder="introduce la materia">
                 <input class="form-control" type="text" name="seccion" id="" placeholder="introduce la seccion">
-                <input type="submit" value="Enviar" class="submit btn btn-primary">
+                <input required type="submit" value="Enviar" class="submit btn btn-primary">
             </form>
+        </article>
+
+        <article class="table-aulas-container">
+            <table class="aulas-table table table-borderless">
+                <thead>
+                    <th scope="col">Profesor</th>
+                    <th scope="col">Materia</th>
+                    <th scope="col">Seccion</th>
+                    <th scope="col">Opciones</th>
+                </thead>
+                <tbody>
+
+                    <% aulas.forEach(aula => { %>
+                        <tr>
+                            <td scope="row"><%=aula.name%></td>
+                            <td><%=aula.materia%></td>
+                            <td><%=aula.seccion%></td>
+                            <td><form method="POST" action="/crearaula/delete/<%=aula.id%>?_method=DELETE" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este registro?')">
+                                <button type="submit" class="btn btn-danger boton-delete">Eliminar</button>
+                              </form></td>
+                        </tr>           
+                    <% }) %>
+
+                </tbody>
+            </table>
         </article>
 
     </section>

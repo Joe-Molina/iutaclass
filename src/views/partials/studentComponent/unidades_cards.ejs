@@ -13,7 +13,10 @@
                 <p class="unidad-card-p">
                     Descripcion: <%=unidad.contenido%>
                 </p>
-
+                <form action="/unidades/subir-archivo" method="POST"  enctype="multipart/form-data">
+                    <input type="text" value="<%=unidad.id%>" name="">
+                    <input type="file" name="" id="">
+                </form>
             </a>
             <% }) %>
     </div>

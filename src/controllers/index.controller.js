@@ -14,6 +14,8 @@ export const getIndex = async (req, res) => {
     const user = req.session.name;
     const email = req.session.email;
 
+    const vista = "inicio"
+
 
     if (req.session.loggedin == true) {
 
@@ -61,7 +63,7 @@ export const getIndex = async (req, res) => {
                 res.status(500).send('Error en la consulta');
               }
 
-              res.render("index", { aulas: userdata, session: req.session, unidades: false })
+              res.render("index", { aulas: userdata, session: req.session, unidades: false, vista })
 
 
             }
@@ -86,12 +88,12 @@ export const getOneClass = async (req, res) => {
     if (req.session.loggedin == true) {
       const id = req.session.user;
       const user = req.session.name;
-      const email = req.session.email;  
+      const email = req.session.email;
 
       await req.getConnection((err, conn) => {
 
-       
-        if(req.session.userType == 2){
+
+        if (req.session.userType == 2) {
           conn.query(
             "SELECT * FROM Alumnos_aula WHERE user_id = ?", [id],
             (err, userdata) => {
@@ -102,9 +104,9 @@ export const getOneClass = async (req, res) => {
               }
               console.log("userdata")
               console.log(userdata)
-  
+
               const aulaIds = userdata.map((row) => row.aula_id);
-  
+
               conn.query(
                 "SELECT * FROM aulas WHERE id IN (?)",
                 [aulaIds],
@@ -125,8 +127,12 @@ export const getOneClass = async (req, res) => {
                         res.status(500).send('Error en la segunda consulta');
                         return;
                       }
+
+                      
+
+                      const vista = "inicio"
                       console.log(unidades)
-                      res.render('index', { aulas: aulaData, unidades, session: req.session })
+                      res.render('index', { aulas: aulaData, unidades, session: req.session, vista })
                     }
                   )
                 }
@@ -135,7 +141,7 @@ export const getOneClass = async (req, res) => {
           )
         }
 
-        if(req.session.userType == 1){
+        if (req.session.userType == 1) {
 
           console.log("inicia query")
           conn.query(
@@ -160,7 +166,8 @@ export const getOneClass = async (req, res) => {
                   }
                   console.log("unidades")
                   console.log(unidades)
-                  res.render('index', { aulas: userdata, unidades, session: req.session })
+                  const vista = "inicio"
+                  res.render('index', { aulas: userdata, unidades, session: req.session, vista })
                 }
               )
 

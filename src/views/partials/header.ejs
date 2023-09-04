@@ -1,13 +1,45 @@
 <header>
     <span>IUTACLASS</span>
-    <a href="/">Inicio</a>
+    <a href="/" class="btn-inicio">Inicio</a>
     <% if (session.userType == 2) { %>
         <h2 class="info-user"><%=session.name%> (Estudiante)</h2>
         <% } %>
         <% if (session.userType == 1) { %>
-            <a href="/crearaula">crear aula</a>
-            <a href="/asignaraula">asignar aula</a>
-            <a href="/crearunidad">crear unidad</a>
+            <% if (vista == "inicio") { %>
+                <style>
+                    .btn-inicio{
+                        background-color: rgb(0, 0, 0);
+                    }
+                </style>
+            <% } %>
+
+            <% if (vista == "crearaula") { %>
+                <style>
+                    .btn-crear-aula{
+                        background-color: rgb(0, 0, 0);
+                    }
+                </style>
+            <% } %>
+
+            <% if (vista == "asignaraula") { %>
+                <style>
+                    .btn-asignar-aula{
+                        background-color: rgb(0, 0, 0);
+                    }
+                </style>
+            <% } %>
+
+            <% if (vista == "crearunidad") { %>
+                <style>
+                    .btn-crear-unidad{
+                        background-color: rgb(0, 0, 0);
+                    }
+                </style>
+            <% } %> 
+
+            <a href="/crearaula" class="btn-crear-aula">crear aula</a>
+            <a href="/asignaraula" class="btn-asignar-aula">asignar aula</a>
+            <a href="/crearunidad" class="btn-crear-unidad">crear unidad</a>
             <% } %>
 
     <a href="/logout">salir</a>

@@ -3,7 +3,7 @@
 .aula-info .unidades-container .unidad-card{
     display: inline-block;
     width: 300px;
-    height: auto;
+    height: 200px;
     margin: 20px;
     padding: 20px;
     border: thin solid #5c5c5c;
@@ -28,8 +28,11 @@
 }
 
 .unidad-card-p{
+    height: 70px;
     font-size: 12px;
     padding: 7px;
     background-color: rgb(219, 252, 252);
-    border-radius: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+
 }

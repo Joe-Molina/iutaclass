@@ -18,9 +18,9 @@
             <form action="/login" method="POST">
                 <h2>IUTACLASS</h2>
                 <label for="input-email">Correo</label>
-                <input class="form-control" type="email" name="email" id="input-email" placeholder="introduce tu email">
+                <input required class="form-control" type="email" name="email" id="input-email" placeholder="introduce tu email">
                 <label for="input-password">Contrasena</label>
-                <input class="form-control" type="password" name="password" id="input-password" placeholder="introduce tu contrasena">
+                <input required class="form-control" type="password" name="password" id="input-password" placeholder="introduce tu contrasena">
                 <input type="submit" value="Enviar" class="submit btn">
         
                 <% if (error) { %>

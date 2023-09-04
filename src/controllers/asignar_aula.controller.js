@@ -48,8 +48,8 @@ export const getAsignarAula = async (req, res) => {
                   resultado.aula = rows2;
   
                   console.log(resultado)
-          
-                  res.render('asignaraula', {aulas: resultado.aula, estudiantes: resultado.estudiantes, session: req.session})
+                  const vista = "asignaraula"
+                  res.render('asignaraula', {vista,aulas: resultado.aula, estudiantes: resultado.estudiantes, session: req.session})
   
                 });
               });

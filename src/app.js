@@ -19,6 +19,9 @@ import index from "./routes/index.route.js"
 import crearAulas from "./routes/crear_aula.route.js"
 import asignarAulas from "./routes/asignar_aula.route.js"
 import crearUnidad from "./routes/crear_unidad.route.js"
+import subirArchivo from "./routes/subir_archivos.route.js"
+import methodOverride from 'method-override';
+
 
 
 
@@ -41,6 +44,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
+app.use(methodOverride('_method'));
 
 app.use(myConnection(mysql, {
   host: DB_HOST,
@@ -56,6 +60,7 @@ app.use(login)
 app.use(asignarAulas)
 app.use(crearAulas)
 app.use(crearUnidad)
+app.use(subirArchivo)
 app.use(index)
 
 //route not found

@@ -17,15 +17,15 @@
             <form action="/register" method="POST">
 
                 <h2>Registrar usuario</h2>
-                <input class="form-control" type="text" name="name" id="" placeholder="introduce tu nombre">
+                <input  required class="form-control" type="text" name="name" id="" placeholder="introduce tu nombre">
                 <label for="">tipo de usuario</label>
-                <select class="form-select" name="tipo_usuario" placeholder="tipo de usuario">
+                <select required class="form-select" name="tipo_usuario" placeholder="tipo de usuario">
                     <option value="2">Estudiante</option>
                     <option value="1">Docente</option>
                   </select>
-                <input class="form-control" type="email" name="email" id="" placeholder="introduce tu email">
-                <input class="form-control" type="password" name="password" id="" placeholder="introduce tu contraseña">
-                <input class="form-control" type="submit" value="Enviar" class="submit">
+                <input required class="form-control" type="email" name="email" id="" placeholder="introduce tu email">
+                <input required class="form-control" type="password" name="password" id="" placeholder="introduce tu contraseña">
+                <input required class="form-control" type="submit" value="Enviar" class="submit">
                 
                 <% if (error) { %>
                     <p><%= error %></p>

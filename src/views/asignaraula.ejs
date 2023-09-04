@@ -18,7 +18,7 @@
                 <h2>ASIGNAR AULA</h2>
                 <form action="/asignaraula" method="POST">
                     <label for="select-docente">seleciona estudiante</label>
-                    <select name="user_id" id="select-docente" class="form-select">
+                    <select required name="user_id" id="select-docente" class="form-select">
 
                         <% estudiantes.forEach(estudiante=> {%>
                             <option value="<%=estudiante.id%>">
@@ -28,7 +28,7 @@
                     </select>
 
                     <label for="select-estudiante">seleciona aula a asignar</label>
-                    <select name="aula_id" id="select-docente" class="form-select">
+                    <select required name="aula_id" id="select-docente" class="form-select">
 
                         <% aulas.forEach(aula=> {%>
                             <option value="<%=aula.id%>">

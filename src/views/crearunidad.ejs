@@ -18,7 +18,7 @@
                 <h2>Crear Unidad</h2>
                 <form action="/crearunidad" method="POST">
                     <label for="select-aula">selecione el aula</label>
-                    <select name="aula_id" id="select-aula" class="form-select">
+                    <select required name="aula_id" id="select-aula" class="form-select">
 
                         <% aulas.forEach(aula=> {%>
                             <option value="<%=aula.id%>">
@@ -27,11 +27,11 @@
                             <% }); %>
                     </select>
 
-                    <input type="text" class="form-control" placeholder="Titulo" name="titulo">
+                    <input required type="text" class="form-control" placeholder="Titulo" name="titulo">
                     <textarea name="contenido" id="" class="form-control" placeholder="Escribe el contenido de la unidad aqui..."></textarea>
-                    <input type="text" class="form-control" name="tipo_evaluacion" placeholder="Tipo de Evaluacion">
+                    <input required type="text" class="form-control" name="tipo_evaluacion" placeholder="Tipo de Evaluacion">
                     <label for="">fecha de entrega</label>
-                    <input type="date" name="fecha_culminacion" class="form-control">
+                    <input required type="date" name="fecha_culminacion" class="form-control">
 
                     <input class="submit btn btn-primary" type="submit" value="Enviar" class="submit">
                 </form>

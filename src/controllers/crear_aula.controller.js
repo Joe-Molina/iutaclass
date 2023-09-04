@@ -11,10 +11,19 @@ export const getCrearAula = async (req, res) => {
             conn.query(
                 "SELECT * FROM users WHERE tipo_usuario = 1",
                 (err, userdata) => {
+
+                    conn.query(
+                        "SELECT aulas.*, users.name FROM aulas JOIN users ON aulas.user_id = users.id;",
+                        (err, aulas) =>{
+
+                            console.log(userdata)
+                            console.log(aulas)
+
+                            const vista = "crearaula"
+                            res.render("crearaula", { vista, docentes: userdata, session: req.session, aulas});
+                        }
+                    )
     
-                    console.log(userdata)
-    
-                    res.render("crearaula", { docentes: userdata, session: req.session});
                 }
     
             )
@@ -34,3 +43,12 @@ export const postCrearAula = async (req, res) => {
         })
     });
 };
+
+export const deleteAula = async (req, res) => {
+    req.getConnection((err, conn) => {
+        console.log(req.params.id)
+        conn.query('DELETE FROM aulas WHERE id = ?', [req.params.id], (err, rows) => {
+            res.redirect('/crearaula')
+        })
+    });
+}   
