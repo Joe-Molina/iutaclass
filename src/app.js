@@ -20,6 +20,7 @@ import crearAulas from "./routes/crear_aula.route.js"
 import asignarAulas from "./routes/asignar_aula.route.js"
 import crearUnidad from "./routes/crear_unidad.route.js"
 import subirArchivo from "./routes/subir_archivos.route.js"
+import calificar from "./routes/calificar.route.js"
 import methodOverride from 'method-override';
 
 
@@ -57,6 +58,7 @@ app.use(myConnection(mysql, {
 //routes
 app.use(register)
 app.use(login)
+app.use(calificar)
 app.use(asignarAulas)
 app.use(crearAulas)
 app.use(crearUnidad)

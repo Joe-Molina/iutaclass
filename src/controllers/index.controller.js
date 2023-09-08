@@ -47,7 +47,7 @@ export const getIndex = async (req, res) => {
                   }
 
                   console.log(aulaData)
-                  res.render("index", { aulas: aulaData, session: req.session, unidades: false });
+                  res.render("index", { aulas: aulaData, session: req.session, unidades: false, calificarvista: false });
                 }
               );
             }
@@ -63,7 +63,7 @@ export const getIndex = async (req, res) => {
                 res.status(500).send('Error en la consulta');
               }
 
-              res.render("index", { aulas: userdata, session: req.session, unidades: false, vista })
+              res.render("index", { aulas: userdata, session: req.session, unidades: false, vista,calificarvista: false })
 
 
             }
@@ -102,22 +102,19 @@ export const getOneClass = async (req, res) => {
                 res.status(500).send('Error en la consulta');
                 return;
               }
-              console.log("userdata")
-              console.log(userdata)
-
               const aulaIds = userdata.map((row) => row.aula_id);
 
               conn.query(
                 "SELECT * FROM aulas WHERE id IN (?)",
                 [aulaIds],
-                (err, aulaData) => {
+                (err, aulasData) => {
                   if (err) {
                     console.error('Error en la segunda consulta 1:', err);
                     res.status(500).send('Error en la segunda consultaaaa');
                     return;
                   }
-                  console.log("auladata")
-                  console.log(aulaData)
+                  //console.log("auladata")
+                  //console.log(aulasData)
                   conn.query(
                     "SELECT * FROM evaluacion_unidad WHERE aula_id = ?",
                     [req.params.id],
@@ -127,12 +124,11 @@ export const getOneClass = async (req, res) => {
                         res.status(500).send('Error en la segunda consulta');
                         return;
                       }
-
-                      
+                      console.log("unidades")
+                      console.log(unidades)
 
                       const vista = "inicio"
-                      console.log(unidades)
-                      res.render('index', { aulas: aulaData, unidades, session: req.session, vista })
+                      res.render('index', { aulas: aulasData, unidades, session: req.session, vista,calificarvista: false })
                     }
                   )
                 }
@@ -167,7 +163,7 @@ export const getOneClass = async (req, res) => {
                   console.log("unidades")
                   console.log(unidades)
                   const vista = "inicio"
-                  res.render('index', { aulas: userdata, unidades, session: req.session, vista })
+                  res.render('index', { aulas: userdata, unidades, session: req.session, vista,calificarvista: false })
                 }
               )
 

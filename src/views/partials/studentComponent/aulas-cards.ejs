@@ -1,7 +1,17 @@
-<h2>mis clases</h2>
-<% aulas.forEach(aula => { %>
-<a class="aula-card" href="/unidades/<%=aula.id%>">
-    <h3><%=aula.materia%></h3>
-    <p>seccion: <%=aula.seccion%></p>
-</a>
-<% }) %>
+<% if (calificarvista) { %>
+    <h2>mis clases</h2>
+    <% aulas.forEach(aula => { %>
+    <a class="aula-card" href="/calificar/<%=aula.id%>">
+        <h3><%=aula.materia%></h3>
+        <p>seccion: <%=aula.seccion%></p>
+    </a>
+    <% }) %>
+<% } else{%>
+    <h2>mis clases</h2>
+    <% aulas.forEach(aula => { %>
+    <a class="aula-card" href="/unidades/<%=aula.id%>">
+        <h3><%=aula.materia%></h3>
+        <p>seccion: <%=aula.seccion%></p>
+    </a>
+    <% }) %>
+    <% }%>

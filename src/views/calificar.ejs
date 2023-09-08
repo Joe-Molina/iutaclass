@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/indexClass.css">
     <link rel="stylesheet" href="/css/unidades_cards.css">
+    <link rel="stylesheet" href="/css/unidades_cards_calificar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <title>iutaclass</title>
@@ -16,9 +17,7 @@
                 <%- include('partials/studentComponent/aulas-cards.ejs') %>
         </article>
         <article class="aula-info">
-            <% if (unidades) { %>
-             <%- include('partials/studentComponent/unidades_cards.ejs') %>
-            <% } %>
+             <%- include('partials/studentComponent/tabla-calificar.ejs') %>
         </article>
         
     </section>
