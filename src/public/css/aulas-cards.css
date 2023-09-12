@@ -1,0 +1,20 @@
+.aula-card{
+    width: 170px;
+    height: 70px;
+    margin: 10px;
+    padding: 10px;
+    background-color: none;
+    color: #777777;
+    border-radius: 10px;
+    transition: .3s;
+    border: #707070 thin solid;
+    text-decoration: none;
+}
+
+.aula-card h3{
+    font-size: 16px;
+}
+
+.aula-card:hover{
+    transform: scale(1.1);
+}
