@@ -20,5 +20,5 @@ Carreras.hasMany(Materias, {
 
 Materias.belongsTo(Carreras, {
   foreignKey: "carrera_id",
-  sourceKey: "id",
+  targetKey: "id",
 });

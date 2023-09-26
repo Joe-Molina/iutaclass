@@ -13,7 +13,7 @@ import {
   DB_USER,
   DB_PASSWORD,
 } from "./config.js";
-//import login from "./routes/login.routes.js";
+import login from "./routes/login.routes.js";
 import register from "./routes/register.routes.js";
 /*
 import index from "./routes/index.routes.js";
@@ -60,7 +60,7 @@ app.use(
 
 //routes
 app.use(register);
-// app.use(login);
+app.use(login);
 // app.use(calificar);
 // app.use(asignarAulas);
 // app.use(crearAulas);

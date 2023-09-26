@@ -17,6 +17,6 @@ export const crearRelacion = (PK, FK, FKname) => {
 
   FK.belongsTo(PK, {
     foreignKey: FKname,
-    sourceKey: "id",
+    targetKey: "id",
   });
 };

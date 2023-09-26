@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-import { Aulas } from "./aulas.model.js";
+import { aulas } from "./aulas.model.js";
 import { Alumnos } from "./alumnos.model.js";
 import { crearRelacion } from "./modelo.model.js";
 
@@ -13,10 +13,16 @@ export const Users = sequelize.define("Users", {
   name: {
     type: DataTypes.STRING,
   },
+  password: {
+    type: DataTypes.STRING,
+  },
   email: {
     type: DataTypes.STRING,
   },
+  userType: {
+    type: DataTypes.INTEGER,
+  },
 });
 
-crearRelacion(Users, Aulas, "user_id");
+crearRelacion(Users, aulas, "user_id");
 crearRelacion(Users, Alumnos, "user_id");

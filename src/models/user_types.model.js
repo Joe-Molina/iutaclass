@@ -20,5 +20,5 @@ User_types.hasMany(Users, {
 
 Users.belongsTo(User_types, {
   foreignKey: "userType_id",
-  sourceKey: "id",
+  targetKey: "id",
 });

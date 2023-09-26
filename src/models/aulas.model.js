@@ -5,7 +5,7 @@ import { Alumnos } from "./alumnos.model.js";
 import { Archivos_docente } from "./archivos_docente.model.js";
 import { Evaluacion_unidad } from "./evaluacion_unidad.model.js";
 
-export const Aulas = sequelize.define("aulas", {
+export const aulas = sequelize.define("aulas", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -13,6 +13,6 @@ export const Aulas = sequelize.define("aulas", {
   },
 });
 
-crearRelacion(Aulas, Alumnos, "aula_id");
-crearRelacion(Aulas, Evaluacion_unidad, "aula_id");
-crearRelacion(Aulas, Archivos_docente, "aula_id");
+crearRelacion(aulas, Alumnos, "aula_id");
+crearRelacion(aulas, Evaluacion_unidad, "aula_id");
+crearRelacion(aulas, Archivos_docente, "aula_id");

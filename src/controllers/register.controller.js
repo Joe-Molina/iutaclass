@@ -1,37 +1,35 @@
-import { pool } from "../db.js";
 import bodyParser from "body-parser";
-import bcrypt from "bcrypt";
-import myConnection from "express-myconnection";
 import { estilos } from "../css.js";
+import { Users } from "../models/Users.model.js";
 
 export const getRegister = async (req, res) => {
   res.render("register", { error: false });
 };
 
-export const postRegister = async (req, res) => {
-  const data = req.body;
+export const crearUsuario = async (req, res) => {
+  try {
+    // buscar el email en la base de datos para ver si existe
+    //si existe no permitir crear otro usuario
+    //si no existe crearlo
+    //redirigir al login
 
-  //console.log(data.password);
+    const { name, email, password } = req.body;
 
-  req.getConnection((err, conn) => {
-    conn.query(
-      "SELECT * FROM users WHERE email = ?",
-      [data.email],
-      (err, userdata) => {
-        if (userdata.length > 0) {
-          res.render("register", {
-            headtitle: "registrar usuario",
-            error: "este usuario ya existe",
-          });
-        } else {
-          req.getConnection((err, conn) => {
-            conn.query("INSERT INTO users SET ?", [data], (err, rows) => {
-              console.log(data.password);
-              res.redirect("/login");
-            });
-          });
-        }
-      }
-    );
-  });
+    const user = await Users.findOne({
+      where: { email },
+    });
+
+    if (!user) {
+      const newUser = await Users.create({
+        name,
+        email,
+        password,
+      });
+      res.json("usuario creado");
+    } else {
+      res.json("usuario ya registrado");
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 };
