@@ -1,10 +1,9 @@
 import bodyParser from "body-parser";
-import axios from "axios";
-import moment from "moment";
 import session from "express-session";
 import myConnection from "express-myconnection";
 import { estilos } from "../css.js";
 
+/*
 export const getCrearAula = async (req, res) => {
   if (req.session.userType == 1) {
     await req.getConnection((err, conn) => {
@@ -58,3 +57,4 @@ export const deleteAula = async (req, res) => {
     );
   });
 };
+*/

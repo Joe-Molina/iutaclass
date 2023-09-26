@@ -1,11 +1,11 @@
 import { pool } from "../db.js";
 import bodyParser from "body-parser";
-import axios from "axios";
-import moment from "moment";
 import bcrypt from "bcrypt";
 import myConnection from "express-myconnection";
 import session from "express-session";
 import { estilos } from "../css.js";
+
+/*
 
 export const getLogin = async (req, res) => {
   if (req.session.loggedin != true) {
@@ -55,3 +55,5 @@ export const getLogOut = async (req, res) => {
   }
   res.redirect("/login");
 };
+
+*/

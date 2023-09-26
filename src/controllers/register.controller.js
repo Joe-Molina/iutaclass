@@ -1,7 +1,5 @@
 import { pool } from "../db.js";
 import bodyParser from "body-parser";
-import axios from "axios";
-import moment from "moment";
 import bcrypt from "bcrypt";
 import myConnection from "express-myconnection";
 import { estilos } from "../css.js";

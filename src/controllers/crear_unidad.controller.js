@@ -1,9 +1,9 @@
 import bodyParser from "body-parser";
-import axios from "axios";
-import moment from "moment";
 import session from "express-session";
 import myConnection from "express-myconnection";
 import { estilos } from "../css.js";
+
+/*
 
 export const getCrearUnidad = async (req, res) => {
   try {
@@ -40,3 +40,5 @@ export const postCrearUnidad = async (req, res) => {
     });
   });
 };
+
+*/

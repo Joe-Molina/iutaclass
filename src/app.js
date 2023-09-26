@@ -13,16 +13,17 @@ import {
   DB_USER,
   DB_PASSWORD,
 } from "./config.js";
-import login from "./routes/login.route.js";
-import register from "./routes/register.route.js";
-import index from "./routes/index.route.js";
-import crearAulas from "./routes/crear_aula.route.js";
-import asignarAulas from "./routes/asignar_aula.route.js";
-import crearUnidad from "./routes/crear_unidad.route.js";
-import subirArchivo from "./routes/subir_archivos.route.js";
-import calificar from "./routes/calificar.route.js";
+//import login from "./routes/login.routes.js";
+import register from "./routes/register.routes.js";
+/*
+import index from "./routes/index.routes.js";
+import crearAulas from "./routes/crear_aula.routes.js";
+import asignarAulas from "./routes/asignar_aula.routes.js";
+import crearUnidad from "./routes/crear_unidad.routes.js";
+import subirArchivo from "./routes/subir_archivos.routes.js";
+import calificar from "./routes/calificar.routes.js";
+*/
 import methodOverride from "method-override";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -46,6 +47,7 @@ app.use(
 );
 app.use(methodOverride("_method"));
 
+// borrar despues de reemplazar todas las consultas con sql
 app.use(
   myConnection(mysql, {
     host: DB_HOST,
@@ -58,13 +60,13 @@ app.use(
 
 //routes
 app.use(register);
-app.use(login);
-app.use(calificar);
-app.use(asignarAulas);
-app.use(crearAulas);
-app.use(crearUnidad);
-app.use(subirArchivo);
-app.use(index);
+// app.use(login);
+// app.use(calificar);
+// app.use(asignarAulas);
+// app.use(crearAulas);
+// app.use(crearUnidad);
+// app.use(subirArchivo);
+// app.use(index);
 
 //route not found
 app.use((req, res, next) => {

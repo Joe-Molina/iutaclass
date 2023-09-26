@@ -1,6 +1,4 @@
 import bodyParser from "body-parser";
-import axios from "axios";
-import moment from "moment";
 import session from "express-session";
 import myConnection from "express-myconnection";
 import pool from "mysql2";
@@ -8,6 +6,7 @@ import { estilos } from "../css.js";
 
 const csss = [estilos.header, estilos.index, estilos.aulasCard, estilos.footer];
 
+/*
 export const getIndex = async (req, res) => {
   try {
     const id = req.session.user;
@@ -203,3 +202,5 @@ export const getOneClass = async (req, res) => {
     res.status(500).send("Error en las consultas");
   }
 };
+
+*/

@@ -1,9 +1,9 @@
 import bodyParser from "body-parser";
-import axios from "axios";
-import moment from "moment";
 import session from "express-session";
 import myConnection from "express-myconnection";
 import { estilos } from "../css.js";
+
+/*
 
 export const getcalificacion = async (req, res) => {
   try {
@@ -178,3 +178,5 @@ export const postcalificacion = (req, res) => {
     res.status(500).send("Error en las consultas");
   }
 };
+
+*/

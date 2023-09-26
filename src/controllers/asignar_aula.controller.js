@@ -1,10 +1,9 @@
 import bodyParser from "body-parser";
-import axios from "axios";
-import moment from "moment";
 import session from "express-session";
 import myConnection from "express-myconnection";
 import { estilos } from "../css.js";
 
+/*
 export const getAsignarAula = async (req, res) => {
   try {
     req.getConnection((err, conn) => {
@@ -69,3 +68,5 @@ export const postAsignarAula = async (req, res) => {
     });
   });
 };
+
+*/
