@@ -17,7 +17,7 @@ import "./models/user_types.model.js";
 
 async function main() {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
 
     app.listen(PORT);
     console.log(`server running on port ${PORT}`);

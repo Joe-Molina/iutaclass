@@ -19,9 +19,6 @@ export const Users = sequelize.define("Users", {
   email: {
     type: DataTypes.STRING,
   },
-  userType: {
-    type: DataTypes.INTEGER,
-  },
 });
 
 crearRelacion(Users, aulas, "user_id");
