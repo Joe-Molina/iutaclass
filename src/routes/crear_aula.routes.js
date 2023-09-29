@@ -1,17 +1,16 @@
 import { Router } from "express";
 import {
-    getCrearAula,
-    postCrearAula,
-    deleteAula
-} from "../controllers/crear_aula.controller.js"
+  getCrearAula,
+  postCrearAula,
+  deleteAula,
+} from "../controllers/crear_aula.controller.js";
 
 const router = Router();
 
+router.get("/crear/aula", getCrearAula);
 
-router.get('/crearaula', getCrearAula);
+router.post("/crear/aula", postCrearAula);
 
-router.post('/crearaula', postCrearAula);
-
-router.delete('/crearaula/delete/:id', deleteAula);
+router.delete("/delete/aula/:id", deleteAula);
 
 export default router;

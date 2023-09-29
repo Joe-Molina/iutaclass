@@ -15,9 +15,11 @@ import {
 } from "./config.js";
 import login from "./routes/login.routes.js";
 import register from "./routes/register.routes.js";
+import index from "./routes/index.routes.js";
+import materias from "./routes/materias.routes.js";
+import crearAulas from "./routes/crear_aula.routes.js";
 /*
 import index from "./routes/index.routes.js";
-import crearAulas from "./routes/crear_aula.routes.js";
 import asignarAulas from "./routes/asignar_aula.routes.js";
 import crearUnidad from "./routes/crear_unidad.routes.js";
 import subirArchivo from "./routes/subir_archivos.routes.js";
@@ -61,12 +63,13 @@ app.use(
 //routes
 app.use(register);
 app.use(login);
+app.use(materias);
 // app.use(calificar);
 // app.use(asignarAulas);
-// app.use(crearAulas);
+app.use(crearAulas);
 // app.use(crearUnidad);
 // app.use(subirArchivo);
-// app.use(index);
+app.use(index);
 
 //route not found
 app.use((req, res, next) => {

@@ -1,60 +1,43 @@
 import bodyParser from "body-parser";
 import session from "express-session";
-import myConnection from "express-myconnection";
 import { estilos } from "../css.js";
+import { Materias } from "../models/Materias.model.js";
+import { Users } from "../models/Users.model.js";
+import { aulas } from "../models/aulas.model.js";
 
-/*
 export const getCrearAula = async (req, res) => {
-  if (req.session.userType == 1) {
-    await req.getConnection((err, conn) => {
-      conn.query(
-        "SELECT * FROM users WHERE tipo_usuario = 1",
-        (err, userdata) => {
-          conn.query(
-            "SELECT aulas.*, users.name FROM aulas JOIN users ON aulas.user_id = users.id;",
-            (err, aulas) => {
-              console.log(userdata);
-              console.log(aulas);
+  // buscar usuarios docente
+  // buscar materias
+  try {
+    if (req.session.userType > 2) {
+      const users = await Users.findAll({
+        where: {
+          userType: 2,
+        },
+      });
 
-              const vista = "crearaula";
-              res.render("crearaula", {
-                headtitle: "crear aula",
-                vista,
-                docentes: userdata,
-                session: req.session,
-                aulas,
-              });
-            }
-          );
-        }
-      );
-    });
-  } else {
-    res.redirect("/");
-  }
+      const materias = await Materias.findAll();
+    } else {
+      res.redirect("/");
+    }
+  } catch (error) {}
 };
 
 export const postCrearAula = async (req, res) => {
-  const data = req.body;
+  const { user_id, materia_id } = req.body;
 
-  req.getConnection((err, conn) => {
-    conn.query("INSERT INTO aulas SET ?", [data], (err, rows) => {
-      console.log(data);
-      res.redirect("/crearaula");
-    });
+  const newAula = await aulas.create({
+    user_id,
+    materia_id,
   });
+
+  res.json(newAula);
 };
 
 export const deleteAula = async (req, res) => {
-  req.getConnection((err, conn) => {
-    console.log(req.params.id);
-    conn.query(
-      "DELETE FROM aulas WHERE id = ?",
-      [req.params.id],
-      (err, rows) => {
-        res.redirect("/crearaula");
-      }
-    );
+  const id = req.params.id;
+
+  await aulas.delete({
+    where: { id },
   });
 };
-*/

@@ -2,71 +2,37 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import myConnection from "express-myconnection";
 import { estilos } from "../css.js";
-
-/*
+import { Users } from "../models/Users.model.js";
+import { aulas } from "../models/aulas.model.js";
+import { Alumnos } from "../models/alumnos.model.js";
 export const getAsignarAula = async (req, res) => {
+  // buscar usuarios estudiantes y guardarlo en una variable
+  // seleecionar todas las aulas
+  //
+
   try {
-    req.getConnection((err, conn) => {
-      if (req.session.userType == 1) {
-        if (err) {
-          console.error("Error al establecer la conexión:", err);
-          res.status(500).send("Error en la conexión a la base de datos");
-          return;
-        }
+    if (req.session.userType == 1) {
+      const estudiantes = await Users.findAll({
+        where: {
+          userType: 2,
+        },
+      });
+      const aaulas = await aulas.findAll();
 
-        const consulta1 = "SELECT * FROM users WHERE tipo_usuario = 2";
-        const consulta2 = "SELECT * FROM aulas";
-
-        const resultado = {};
-
-        conn.query(consulta1, (err, rows1) => {
-          if (err) {
-            console.error("Error en la consulta 1:", err);
-            res.status(500).send("Error en la consulta 1");
-            return;
-          }
-
-          resultado.estudiantes = rows1;
-
-          conn.query(consulta2, (err, rows2) => {
-            if (err) {
-              console.error("Error en la consulta 2:", err);
-              res.status(500).send("Error en la consulta 2");
-              return;
-            }
-
-            resultado.aula = rows2;
-
-            console.log(resultado);
-            const vista = "asignaraula";
-            res.render("asignaraula", {
-              vista,
-              aulas: resultado.aula,
-              estudiantes: resultado.estudiantes,
-              session: req.session,
-              headtitle: "asignar aula",
-            });
-          });
-        });
-      } else {
-        res.redirect("/");
-      }
-    });
-  } catch (err) {
+      res.json("tengo estudiantes y aulas");
+    } else {
+    }
+  } catch (error) {
     console.error("Error al realizar las consultas:", err);
     res.status(500).send("Error en las consultas");
   }
 };
 
 export const postAsignarAula = async (req, res) => {
-  const data = req.body;
+  const { user_id, aula_id } = req.body;
 
-  req.getConnection((err, conn) => {
-    conn.query("INSERT INTO alumnos_aula SET ?", [data], (err, rows) => {
-      console.log(data);
-      res.redirect("/asignaraula");
-    });
+  const newAlumno = Alumnos.create({
+    user_id,
+    aula_id,
   });
 };
-
-*/

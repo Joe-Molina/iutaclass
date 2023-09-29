@@ -1,7 +1,8 @@
 import { Router } from "express";
 import {
-  getRegister,
-  crearSU,
+  getRegisterEstudiante,
+  getRegisterDocente,
+  getRegisterCoodinador,
   crearCoordinador,
   crearDocente,
   crearEstudiante,
@@ -9,11 +10,12 @@ import {
 
 const router = Router();
 
-router.get("/register/", getRegister);
+router.get("/register/estudiante", getRegisterEstudiante);
+router.get("/register/docente", getRegisterDocente);
+router.get("/register/coordinador", getRegisterCoodinador);
 
 router.post("/register/estudiante", crearEstudiante);
 router.post("/register/docente", crearDocente);
 router.post("/register/coordinador", crearCoordinador);
-router.post("/register/superusuario", crearSU);
 
 export default router;
