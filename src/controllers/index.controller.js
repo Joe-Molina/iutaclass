@@ -1,7 +1,6 @@
 import bodyParser from "body-parser";
 import session from "express-session";
 import { estilos } from "../css.js";
-import { Alumnos } from "../models/alumnos.model.js";
 
 const csss = [estilos.header, estilos.index, estilos.aulasCard, estilos.footer];
 

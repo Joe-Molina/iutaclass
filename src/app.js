@@ -49,17 +49,6 @@ app.use(
 );
 app.use(methodOverride("_method"));
 
-// borrar despues de reemplazar todas las consultas con sql
-app.use(
-  myConnection(mysql, {
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_DATABASE,
-    port: DB_PORT,
-  })
-);
-
 //routes
 app.use(register);
 app.use(login);

@@ -1,24 +1,18 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import { crearRelacion } from "./modelo.model.js";
 import { Users } from "./Users.model.js";
 
-export const User_types = sequelize.define("user_types", {
+export const Administradores = sequelize.define("administradores", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
+  nombre: {
     type: DataTypes.STRING,
   },
-});
-
-User_types.hasMany(Users, {
-  foreignKey: "userType_id",
-  sourceKey: "id",
-});
-
-Users.belongsTo(User_types, {
-  foreignKey: "userType_id",
-  targetKey: "id",
+  apellido: {
+    type: DataTypes.STRING,
+  },
 });

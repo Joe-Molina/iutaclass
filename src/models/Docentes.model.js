@@ -1,20 +1,20 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-import { aulas } from "./aulas.model.js";
 import { crearRelacion } from "./modelo.model.js";
+import { aulas } from "./aulas.model.js";
 
-export const Materias = sequelize.define("materias", {
+export const Docentes = sequelize.define("Docentes", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
+  nombre: {
     type: DataTypes.STRING,
   },
-  seccion: {
+  apellido: {
     type: DataTypes.STRING,
   },
 });
 
-crearRelacion(Materias, aulas, "materia_id");
+crearRelacion(Docentes, aulas, "docente_id");

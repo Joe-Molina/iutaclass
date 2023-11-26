@@ -1,8 +1,9 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-import { aulas } from "./aulas.model.js";
-import { Alumnos } from "./alumnos.model.js";
 import { crearRelacion } from "./modelo.model.js";
+import { Estudiantes } from "./Estudiante.model.js";
+import { Docentes } from "./Docentes.model.js";
+import { Administradores } from "./Administradores.model.js";
 
 export const Users = sequelize.define("Users", {
   id: {
@@ -21,5 +22,6 @@ export const Users = sequelize.define("Users", {
   },
 });
 
-crearRelacion(Users, aulas, "user_id");
-crearRelacion(Users, Alumnos, "user_id");
+crearRelacion(Users, Estudiantes, "user_id");
+crearRelacion(Users, Docentes, "user_id");
+crearRelacion(Users, Administradores, "user_id");

@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
 import { Materias } from "./Materias.model.js";
+import { crearRelacion } from "./modelo.model.js";
+import { Estudiantes } from "./Estudiante.model.js";
 
 export const Carreras = sequelize.define("carreras", {
   id: {
@@ -22,3 +24,5 @@ Materias.belongsTo(Carreras, {
   foreignKey: "carrera_id",
   targetKey: "id",
 });
+
+crearRelacion(Carreras, Estudiantes, "carrera_id");

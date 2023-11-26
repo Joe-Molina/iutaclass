@@ -1,13 +1,13 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
 
-export const Calificaciones = sequelize.define("Calificaciones", {
+export const Calificaciones = sequelize.define("calificaciones", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  Calificacion: {
-    type: DataTypes.STRING,
+  puntaje: {
+    type: DataTypes.INTEGER,
   },
 });
