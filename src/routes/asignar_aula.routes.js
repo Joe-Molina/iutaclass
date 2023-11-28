@@ -1,14 +1,22 @@
 import { Router } from "express";
 import {
-    getAsignarAula,
-    postAsignarAula
-} from "../controllers/asignar_aula.controller.js"
+  asignarEstudianteAAula,
+  getEstudianteAulas,
+  getAsignarAula,
+  deleteEstudianteAula,
+  getEstudiantesAulas,
+} from "../controllers/integrantes_aulas.controller.js";
 
 const router = Router();
 
+router.get("/asignaraula", getAsignarAula); // vista donde se asignan las aulas
 
-router.get('/asignaraula', getAsignarAula);
+router.get("/aulas/estudiante", getEstudianteAulas); // json con info sobre las aulas a las que esta asignado un estudiante
 
-router.post('/asignaraula', postAsignarAula);
+router.get("/aulas/estudiantes", getEstudiantesAulas); // json con info sobre todos los integrantes de todas las aulas
+
+router.post("/asignaraula", asignarEstudianteAAula); // funcion para asignar un estudiante a nu aula
+
+router.delete("/eliminar/integranteAula/:id", deleteEstudianteAula);
 
 export default router;

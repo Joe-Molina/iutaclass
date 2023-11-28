@@ -2,20 +2,23 @@ import { Router } from "express";
 import {
   getRegisterEstudiante,
   getRegisterDocente,
-  getRegisterCoodinador,
-  crearCoordinador,
+  getRegisterAdministrador,
+  crearAdministrador,
   crearDocente,
   crearEstudiante,
+  eliminarUsuario,
 } from "../controllers/register.controller.js";
 
 const router = Router();
 
 router.get("/register/estudiante", getRegisterEstudiante);
 router.get("/register/docente", getRegisterDocente);
-router.get("/register/coordinador", getRegisterCoodinador);
+router.get("/register/Administrador", getRegisterAdministrador);
 
 router.post("/register/estudiante", crearEstudiante);
 router.post("/register/docente", crearDocente);
-router.post("/register/coordinador", crearCoordinador);
+router.post("/register/Administrador", crearAdministrador);
+
+router.delete("/delete/user/:id", eliminarUsuario);
 
 export default router;

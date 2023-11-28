@@ -1,6 +1,9 @@
 import bodyParser from "body-parser";
 import session from "express-session";
 import { Users } from "../models/Users.model.js";
+import { Estudiantes } from "../models/Estudiante.model.js";
+import { Administradores } from "../models/Administradores.model.js";
+import { Docentes } from "../models/Docentes.model.js";
 import { estilos } from "../css.js";
 
 const csss = [estilos.header, estilos.index, estilos.aulasCard, estilos.footer];
@@ -13,7 +16,7 @@ export const getLogin = async (req, res) => {
   }
 };
 
-export const postLogin = async (req, res) => {
+export const Logearse = async (req, res) => {
   const { email, password } = req.body;
 
   //buscar por email al usuario con el que quiero entrar
@@ -25,21 +28,37 @@ export const postLogin = async (req, res) => {
   });
 
   if (user) {
-    if (req.body.password === user.password) {
+    if (password === user.password) {
       req.session.loggedin = true;
       req.session.user = user.id;
       req.session.name = user.name;
       req.session.email = user.email;
-      req.session.userType_id = user.userType_id;
 
-      //res.json(req.session);
-      if (req.session.userType_id == 1) {
-        res.render("estudiantes");
-      } else if (req.session.userType_id == 2) {
-        res.render("docentes");
-      } else if (req.session.userType_id > 2) {
-        res.json("logeado como super su");
+      const estudiante = await Estudiantes.findOne({
+        where: { user_id: req.session.user },
+      });
+
+      const docente = await Docentes.findOne({
+        where: { user_id: req.session.user },
+      });
+
+      const admin = await Administradores.findOne({
+        where: { user_id: req.session.user },
+      });
+
+      if (estudiante) {
+        req.session.estudiante_id = estudiante.id;
+        //res.render("estudiantes");
+        res.json(req.session);
+      } else if (docente) {
+        req.session.docente_id = docente.id;
+        console.log(req.session.docente_id);
+        //res.render("docentes");
+        res.json(req.session);
+      } else if (admin) {
+        req.session.admin_id = admin.id;
         //res.render("coordinadorSu");
+        res.json(req.session);
       }
     } else {
       res.json("la contrasema es incorrecta");
@@ -49,7 +68,7 @@ export const postLogin = async (req, res) => {
   }
 };
 
-export const getLogOut = async (req, res) => {
+export const CerrarSesion = async (req, res) => {
   if (req.session.loggedin == true) {
     req.session.destroy();
   }

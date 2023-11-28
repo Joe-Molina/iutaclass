@@ -13,10 +13,12 @@ export const crearRelacion = (PK, FK, FKname) => {
   PK.hasMany(FK, {
     foreignKey: FKname,
     sourceKey: "id",
+    onDelete: "CASCADE",
   });
 
   FK.belongsTo(PK, {
     foreignKey: FKname,
     targetKey: "id",
+    onDelete: "CASCADE",
   });
 };

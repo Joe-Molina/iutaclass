@@ -12,6 +12,9 @@ export const Evaluacion_estudiante = sequelize.define("evaluacion_estudiante", {
   descripcion: {
     type: DataTypes.STRING,
   },
+  archivo_evaluacion: {
+    type: DataTypes.STRING,
+  },
 });
 
 crearRelacion(

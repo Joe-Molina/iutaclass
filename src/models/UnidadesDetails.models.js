@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-import { crearRelacion } from "./modelo.model.js";
 
 export const DetallesUnidades = sequelize.define("unidades_details", {
   id: {

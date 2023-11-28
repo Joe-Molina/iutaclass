@@ -1,14 +1,14 @@
 import { Router } from "express";
 import {
-  getLogOut,
+  CerrarSesion,
   getLogin,
-  postLogin,
+  Logearse,
 } from "../controllers/login.controller.js";
 
 const router = Router();
 
 router.get("/login", getLogin);
-router.post("/login", postLogin);
-router.get("/logout", getLogOut);
+router.post("/login", Logearse);
+router.get("/logout", CerrarSesion);
 
 export default router;

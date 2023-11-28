@@ -1,19 +1,13 @@
 import { Router } from "express";
 import {
-    getcalificacion,
-    postcalificacion,
-    getcalificacionMateria,
-    getAulaUnidades
+  getcalificaciones,
+  puntuar,
 } from "../controllers/calificar.controller.js";
 
 const router = Router();
 
-router.get("/calificar/", getcalificacion);
-router.get("/calificar/:aulaid", getAulaUnidades);
+router.get("/calificaciones", getcalificaciones);
 
-
-router.get("/calificar/aula/:unidadid", getcalificacionMateria);
-
-router.patch("/subircalificacion/:evaluacion", postcalificacion);
+router.post("/subircalificacion/:evaluacion", puntuar);
 
 export default router;

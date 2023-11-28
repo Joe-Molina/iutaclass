@@ -12,9 +12,6 @@ export const Materias = sequelize.define("materias", {
   name: {
     type: DataTypes.STRING,
   },
-  seccion: {
-    type: DataTypes.STRING,
-  },
 });
 
 crearRelacion(Materias, aulas, "materia_id");
