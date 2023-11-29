@@ -48,17 +48,13 @@ export const Logearse = async (req, res) => {
 
       if (estudiante) {
         req.session.estudiante_id = estudiante.id;
-        //res.render("estudiantes");
         res.json(req.session);
       } else if (docente) {
         req.session.docente_id = docente.id;
-        console.log(req.session.docente_id);
-        //res.render("docentes");
-        res.json(req.session);
+        res.redirect("/inicio/docente");
       } else if (admin) {
         req.session.admin_id = admin.id;
-        //res.render("coordinadorSu");
-        res.json(req.session);
+        res.redirect("/admin");
       }
     } else {
       res.json("la contrasema es incorrecta");

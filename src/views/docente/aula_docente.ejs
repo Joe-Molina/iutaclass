@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Inicio Docente</title>
+</head>
+<body>
+    <%- include('header_docente.ejs') %>
+
+    <section class="unidades-container">
+        <% for (const unidad of unidades) { %>
+            <% for (const detalle of unidad.unidades_details) { %>
+                <article class="unidad-item">
+                    <h3><%= detalle.nombre %></h3><hr>
+                    <p><%= detalle.descripcion %></p>
+                    <p>Evalucion: <%= detalle.tipo_evaluacion %></p>
+                    <a href="/documento/<%= detalle.archivo_evaluacion %>"><img src="/assets/notepad.png" alt="" class="notepad"></a>
+                </article>
+            <% } %>
+        <% } %>
+    </section>
+
+    <section class="crear-unidad-container">
+        <h2>Crear Unidad</h2>
+        <form action="/crearunidad" method="POST" enctype="multipart/form-data" class="form-crear-unidad">
+            <input class="form-control" type="text" name="nombre" placeholder="Titulo...">
+            <input  class="form-control" type="text" name="descripcion" placeholder="Descripcion..">
+            <select name="tipo_evaluacion" class="form-select">
+                <option value="exposicion">exposicion</option>
+                <option value="prueba escrita">prueba escrita</option>
+                <option value="taller">taller</option>
+            </select>
+            <input type="file" name="archivo_evaluacion">
+            <input type="submit" value="Enviar" class="btn btn-success">
+        </form>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+</body>
+
+<style>
+    .crear-unidad-container{
+        width: 400px;
+        text-align: center;
+    }
+
+    .form-crear-unidad{
+        width: 400px;
+        height: auto;
+        background-color: rgb(12, 33, 53);
+            color: aliceblue;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 10px;
+    }
+    .form-crear-unidad input{
+        margin: 10px 0;
+    }
+
+    .unidades-container{
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .unidad-item{
+        width: 300px;
+        height: 200px;
+        margin: 10px;
+        background-color: rgb(12, 33, 53);
+        color: aliceblue;
+        padding: 10px;
+        border-radius: 10px;
+        transition: .3s;
+    }
+
+    .unidad-item:hover{
+        transform: scale(1.1);
+    }
+
+    .unidad-item h3{
+        text-align: center;
+        margin: 0;
+    }
+
+    .unidad-item hr{
+        margin: 0;
+    }
+
+    .unidad-item p{
+        margin: 0;
+    }
+
+    .notepad{
+        width: 30px;
+        background-color: aliceblue;
+        padding: 2px;
+        border-radius: 2px;
+    }
+
+    .notepad:hover{
+        background-color: antiquewhite;
+    }
+
+</style>
+</html>

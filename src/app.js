@@ -15,13 +15,15 @@ import {
 } from "./config.js";
 import login from "./routes/login.routes.js";
 import register from "./routes/register.routes.js";
-import index from "./routes/index.routes.js";
+import indexDocente from "./routes/index_docente.routes.js";
+import indexEstudiante from "./routes/index_estudiante.routes.js";
 import materias from "./routes/materias.routes.js";
 import crearAulas from "./routes/crear_aula.routes.js";
 import asignarAulas from "./routes/asignar_aula.routes.js";
 import crearUnidad from "./routes/crear_unidad.routes.js";
 import subirEvaluaciones from "./routes/subir_evaluacion_estudiante.routes.js";
 import calificar from "./routes/calificar.routes.js";
+import indexAdmin from "./routes/index_admin.routes.js";
 /*
 import index from "./routes/index.routes.js";
 import asignarAulas from "./routes/asignar_aula.routes.js";
@@ -52,6 +54,17 @@ app.use(
 );
 app.use(methodOverride("_method"));
 
+// vaina random
+app.get("/documento/:name", (req, res) => {
+  const documentoFilename = req.params.name;
+  const documentoPath = path.join(
+    __dirname,
+    "public",
+    `uploads/${documentoFilename}`
+  );
+  res.sendFile(documentoPath);
+});
+
 //routes
 app.use(register);
 app.use(login);
@@ -61,7 +74,9 @@ app.use(asignarAulas);
 app.use(crearAulas);
 app.use(crearUnidad);
 app.use(subirEvaluaciones);
-app.use(index);
+app.use(indexDocente);
+app.use(indexEstudiante);
+app.use(indexAdmin);
 
 //route not found
 app.use((req, res, next) => {

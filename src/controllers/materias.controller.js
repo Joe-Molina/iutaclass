@@ -17,13 +17,13 @@ export const crearCarrera = async (req, res) => {
     name,
   });
 
-  res.json(newMateria);
+  res.redirect("/admin");
 };
 
 export const getMaterias = async (req, res) => {
   const materias = await Materias.findAll();
 
-  res.json(materias);
+  res.redirect("/admin");
 };
 
 export const crearMateria = async (req, res) => {
@@ -34,7 +34,7 @@ export const crearMateria = async (req, res) => {
     carrera_id,
   });
 
-  res.json(newMateria);
+  res.redirect("/admin");
 };
 
 export const eliminarMateria = async (req, res) => {
@@ -44,7 +44,7 @@ export const eliminarMateria = async (req, res) => {
     where: { id },
   });
 
-  res.json(deleteMateria);
+  res.redirect("/admin");
 };
 
 export const eliminarCarrera = async (req, res) => {
@@ -54,5 +54,5 @@ export const eliminarCarrera = async (req, res) => {
     where: { id },
   });
 
-  res.json(deleteCarrera);
+  res.redirect("/admin");
 };

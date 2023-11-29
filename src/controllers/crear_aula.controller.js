@@ -24,7 +24,7 @@ export const CrearAula = async (req, res) => {
     materia_id,
   });
 
-  res.json(newAula);
+  res.redirect("/admin");
 };
 
 export const deleteAula = async (req, res) => {

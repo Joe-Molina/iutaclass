@@ -33,11 +33,10 @@ export const getCrearUnidad = async (req, res) => {
 };
 
 export const CrearUnidad = async (req, res) => {
-  const { aula_id, nombre, descripcion, tipo_evaluacion, archivo_evaluacion } =
-    req.body;
+  const { nombre, descripcion, tipo_evaluacion, archivo_evaluacion } = req.body;
 
   const crearUnidad = await Unidades.create({
-    aula_id,
+    aula_id: req.session.create_unidad_aulaid,
   });
 
   const crearDetallesUnidad = await DetallesUnidades.create({
@@ -45,10 +44,10 @@ export const CrearUnidad = async (req, res) => {
     descripcion,
     tipo_evaluacion,
     unidad_id: crearUnidad.id,
-    archivo_evaluacion,
+    archivo_evaluacion: req.file.filename,
   });
 
-  res.json(crearDetallesUnidad);
+  res.redirect(`docente/aula/${req.session.create_unidad_aulaid}`);
 };
 
 export const deleteUnidad = async (req, res) => {

@@ -1,0 +1,40 @@
+<header class="header">
+    <a href="/inicio/docente"><h2>IUTACLASS</h2></a>
+    <div class="nav">
+        <a href="/inicio/docente">Aulas</a>
+        <a href="#">Calificar</a>
+        <a href="/logout">Cerrar sesion</a>
+    </div>
+    <p>Bienvenido <%= docente.nombre %> <%= docente.apellido %></p>
+</header>
+
+<style>
+    .header{
+        width: 100vw;
+        height: 70px;
+        background-color: rgb(12, 33, 53);
+        color: aliceblue;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .nav a{
+        text-decoration: none;
+        color: aliceblue;
+        margin-right: 30px;
+    }
+
+    .nav a:hover{
+        color: rgb(231, 231, 189);
+    }
+
+    .header a{
+        text-decoration: none;
+        color: aliceblue;
+    }
+
+    .header p{
+        margin: 0;
+    }
+</style>

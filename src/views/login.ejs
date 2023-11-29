@@ -19,16 +19,18 @@
                 <h2>IUTACLASS</h2>
                 <label for="input-email">Correo</label>
                 <input required class="form-control" type="email" name="email" id="input-email" placeholder="introduce tu email">
-                <label for="input-password">Contrasena</label>
-                <input required class="form-control" type="password" name="password" id="input-password" placeholder="introduce tu contrasena">
-                <input type="submit" value="Enviar" class="submit btn">
+                <label for="input-password">Contraseña</label>
+                <input required class="form-control" type="password" name="password" id="input-password" placeholder="introduce tu contraseña">
+                <input type="submit" value="Enviar" class="submit btn btn-success">
         
                 <% if (error) { %>
                 <p><%= error %></p>
                 <% } %>
-                <p class="switchLogRes">ir al <a href="/register">registro de alumnos</a></p>
+                <p class="switchLogRes">ir al registro de  <br><a href="/register/estudiante">alumnos</a> , <a href="/register/docente">docentes</a> , <a href="/register/administrador">administradores  </a> </p>
             </form>
         </div>
     </div>
     
-    <%- include('partials/footer.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Inicio Docente</title>
+</head>
+<body>
+    <%- include('header_docente.ejs') %>
+    <section class="all-container">
+
+        <h2>Aulas Asignadas</h2>
+        <div class="cards-container">
+
+            <% Aulas.forEach(aula => { %>
+                
+                <article class="materia-item">
+                    <h3><%= aula.materia.name%></h3>
+                    <hr>
+                    <p><%= aula.materia.carrera.name %></p>
+                    <p><%= aula.Docente.nombre%> <%= aula.Docente.apellido%></p>
+                    <a href="/docente/aula/<%= aula.id %>"><img src="/assets/notepad.png" alt="" class="notepad"></a>
+                </article>
+                
+                
+                
+                
+                <% }) %>
+                
+            </div>
+        
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+<style>
+
+    .all-container{
+        width: 100vw;
+        height: 100%;
+    }
+    .all-container h2{
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .cards-container{
+        width: 1280px;
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }    
+    .materia-item{
+        width: 300px;
+        height: 150px;
+        padding: 20px;
+        border: solid thin #363636;
+        border-radius: 10px;
+        margin: 20px;
+        background-color: rgb(12, 33, 53);
+        color: aliceblue;
+        transition: .3s;
+        position: relative;
+    }
+
+    .materia-item .notepad{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: aliceblue;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .materia-item .notepad:hover{
+        background-color: antiquewhite;
+    }
+
+    .materia-item:hover{
+        transform: scale(1.1);
+    }
+
+    .materia-item p{
+        margin: 0;
+    }
+
+</style>
+
+</html>

@@ -11,7 +11,7 @@ const router = Router();
 router.get("/aulas", getAulas);
 router.get("/aulasEstudiante", getAulasEstudiante);
 
-router.post("/crear/aula", CrearAula);
+router.post("/crear/aula", CrearAula); // no esta en imsomnia
 
 router.delete("/delete/aula/:id", deleteAula);
 

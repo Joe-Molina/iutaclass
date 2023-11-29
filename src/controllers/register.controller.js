@@ -4,38 +4,30 @@ import { Users } from "../models/Users.model.js";
 import { Estudiantes } from "../models/Estudiante.model.js";
 import { Docentes } from "../models/Docentes.model.js";
 import { Administradores } from "../models/Administradores.model.js";
+import { Carreras } from "../models/Carreras.model.js";
 
 export const getRegisterEstudiante = async (req, res) => {
-  const userid = req.session.user;
-  if (userid > 1) {
-    res.json("bievendido al registro de estudiantes");
-    //res.render("registerEstudiante", { error: false });
-  } else {
-    res.json("no puedes ingresar");
-    //res.redirect("/login");
-  }
+  const carreras = await Carreras.findAll();
+
+  res.render("register/register_estudiante", {
+    headtitle: "registar estudiante",
+    error: false,
+    carreras,
+  });
 };
 
 export const getRegisterDocente = async (req, res) => {
-  const userid = req.session.user;
-  if (userid > 2) {
-    res.json("bievendido al registro de docentes");
-    //res.render("registerDocente", { error: false });
-  } else {
-    res.json("no puedes ingresar");
-    //res.redirect("/login");
-  }
+  res.render("register/register_docente", {
+    headtitle: "registar docente",
+    error: false,
+  });
 };
 
 export const getRegisterAdministrador = async (req, res) => {
-  const userid = req.session.user;
-  if (userid > 3) {
-    res.json("bievendido al registro de coordinadores");
-    //res.render("registerCoordinador", { error: false });
-  } else {
-    res.json("no puedes ingresar");
-    //res.redirect("/login");
-  }
+  res.render("register/register_admin", {
+    headtitle: "registar admin",
+    error: false,
+  });
 };
 
 export const crearEstudiante = async (req, res) => {
@@ -61,7 +53,7 @@ export const crearEstudiante = async (req, res) => {
         carrera_id,
       });
 
-      res.json(newUser);
+      res.redirect("/login");
     } else {
       res.json("usuario ya registrado");
     }
@@ -90,7 +82,7 @@ export const crearDocente = async (req, res) => {
         user_id: newUser.id,
       });
 
-      res.json(newDocente);
+      res.redirect("/login");
     } else {
       res.json("usuario ya registrado");
     }
@@ -120,7 +112,7 @@ export const crearAdministrador = async (req, res) => {
         user_id: newUser.id,
       });
 
-      res.json("usuario creado");
+      res.redirect("/login");
     } else {
       res.json("usuario ya registrado");
     }
