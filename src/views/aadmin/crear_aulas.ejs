@@ -81,12 +81,12 @@
     </section>
 
     <section class="aulas-container">
-            <h2>Aulas Creadas</h2>
+            <h2>Escoge un aula para asignarle alumnos</h2>
 
             <div class="aulas">
                 <% Aulas.forEach(aula => { %>
                     <div class="aula-item">
-                        <p><%= aula.Docente.nombre %> <%= aula.Docente.apellido %> - <%= aula.materia.name %> </p> 
+                        <a href="/admin/asignaraula/<%= aula.id %>"><%= aula.Docente.nombre %> <%= aula.Docente.apellido %> - <%= aula.materia.name %> </a> 
                         <button class="btn btn-danger btn-eliminar-aula"  data-aulaid="<%= aula.id %>">X</button>
                     </div>
                 <% }) %>
@@ -211,11 +211,17 @@
             align-items: center;
             padding: 5px 5px;
             transition: .15s;
+
+            
         }
 
         .carrera-item:hover, .materia-item:hover, .aula-item:hover{
             background-color: aliceblue;
             color: black;
+
+            & a{
+            color: black;
+            }
         }
 
         .carrera-item p, .materia-item p,.aula-item p{
@@ -252,6 +258,13 @@
             max-height: 500px;
             overflow: auto;
         }
+
+        .aula-item a{
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+        
 
         .fcm{
            display: flex;

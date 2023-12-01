@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>asignar aulas</title>
+</head>
+<body>
+    <header class="header">
+        <h2>IUTACLASS</h2>
+        <a href="/admin" class="logout">crear aula</a>
+        <a href="/logout" class="logout">cerrar sesion</a>
+    </header>
+
+
+    <section class="all-container">
+        <article class="asignar-aula">
+                <h2><%= carrera.materia.name  %></h2>
+            <form action="/asignaraula" method="POST">
+                <label for="select-estudiante" class="form-label">Asigna a un estudiante</label>
+                <input type="hidden" name="aula_id" value="<%= aula_id %>">
+                <select name="estudiante_id" id="select-estudiante" class="form-select">
+                    <% estudiantes.forEach(estudiante => { %>
+                        <option class="form-option" value="<%= estudiante.id %>"><%= estudiante.nombre %> <%= estudiante.apellido %></option>                
+                    <% }) %>
+                <input type="submit" value="Enviar" class="btn btn-success">
+
+                </select>
+
+            </form>
+
+        </article>
+
+        <article class="estudiantes-asignados">
+
+            <div class="lista-estudiantes">
+                <h2> Estudiantes asignados a <%= carrera.materia.name %></h2>
+                <% carrera.integrantes_aulas.forEach(estudiante => { %>
+                    <div>
+                        <p><%= estudiante.estudiante.nombre %> <%= estudiante.estudiante.apellido %></p>
+                    </div>
+                <% }) %>
+            </div>
+
+        </article>
+
+    </section>
+
+    <style>
+        .all-container{
+            padding: 30px;
+        }
+
+        .asignar-aula{
+            margin: 30px;
+        }
+
+        .estudiantes-asignados{
+            margin: 30px;
+        }
+    </style>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        .header{
+            width: 100vw;
+            height: 70px;
+            background-color: rgb(12, 33, 53);
+            color: aliceblue;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .header a{
+            text-decoration: none;
+            color: aliceblue;
+        }
+        .header a:hover{
+            color: bisque;
+        }
+
+    </style>
+</body>
+</html>

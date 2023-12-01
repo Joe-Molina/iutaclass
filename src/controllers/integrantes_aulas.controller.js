@@ -54,7 +54,8 @@ export const asignarEstudianteAAula = async (req, res) => {
     aula_id,
   });
 
-  res.json(asignarEstudiante);
+  //res.json(asignarEstudiante);
+  res.redirect(`admin/asignaraula/${aula_id}`);
 };
 
 export const deleteEstudianteAula = async (req, res) => {

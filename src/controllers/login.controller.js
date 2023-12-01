@@ -57,10 +57,16 @@ export const Logearse = async (req, res) => {
         res.redirect("/admin");
       }
     } else {
-      res.json("la contrasema es incorrecta");
+      res.render("login", {
+        error: "contraseña incorrecta",
+        headtitle: "Login IUTACLASS",
+      });
     }
   } else {
-    res.json("el usuario no existe");
+    res.render("login", {
+      error: "usario no existe",
+      headtitle: "Login IUTACLASS",
+    });
   }
 };
 
