@@ -48,7 +48,7 @@ export const Logearse = async (req, res) => {
 
       if (estudiante) {
         req.session.estudiante_id = estudiante.id;
-        res.json(req.session);
+        res.redirect("/inicio/estudiante");
       } else if (docente) {
         req.session.docente_id = docente.id;
         res.redirect("/inicio/docente");

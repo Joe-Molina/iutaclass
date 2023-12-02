@@ -26,9 +26,9 @@ export const getIndex = async (req, res) => {
       ],
     });
 
-    res.json([estudiante, Aulas]);
+    //res.json([estudiante, Aulas]);
 
-    //res.render("estudiante/index_estudiante", { estudiante, Aulas });
+    res.render("estudiante/index_estudiante", { estudiante, Aulas });
   } catch (err) {
     console.error("Error al realizar las consultas:", err);
     res.status(500).send("Error en las consultas");
@@ -36,6 +36,10 @@ export const getIndex = async (req, res) => {
 };
 
 export const getAulaEstudiante = async (req, res) => {
+  const estudiante = await Estudiantes.findOne({
+    where: { id: req.session.estudiante_id },
+  });
+
   const aula = await aulas.findOne({
     where: { id: req.params.id },
     include: [
@@ -46,7 +50,14 @@ export const getAulaEstudiante = async (req, res) => {
     ],
   });
 
-  res.json(aula);
+  const { unidades } = aula;
+
+  //res.json([aula, unidades]);
+  res.render("estudiante/aula_unidades_estudiante", {
+    aula,
+    unidades,
+    estudiante,
+  });
 };
 
 export const getEvaluacionesUnidadEstudiante = async (req, res) => {
@@ -62,5 +73,5 @@ export const getEvaluacionesUnidadEstudiante = async (req, res) => {
     ],
   });
 
-  res.json(evaluaciones_unidad);
+  res.json(evaluacionesEstudiante);
 };

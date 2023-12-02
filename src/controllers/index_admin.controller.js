@@ -69,11 +69,6 @@ export const adminAsignarAula = async (req, res) => {
       where: { carrera_id },
     });
 
-    // const estudiantesaula = aulas.findOne({
-    //   where: { id: aula_id },
-    //   include: [],
-    // });
-
     // res.json(carrera);
 
     res.render("aadmin/asignar_aulas", {
