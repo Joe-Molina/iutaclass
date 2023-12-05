@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Inicio Docente</title>
+</head>
+<body>
+    <%- include('header_docente.ejs') %>
+
+    <section class="all-container">
+
+        <article class="calificar-container">
+
+            <% evaluacionesSubidas.forEach(evaluacion => { %>
+                <div class="evaluacion">
+                    <p class="evaluacion-descripcion"><%= evaluacion.descripcion %></p>
+                    <p><%= evaluacion.integrantes_aula.estudiante.nombre %>  <%= evaluacion.integrantes_aula.estudiante.apellido %></p>
+                    <a href="/documento/<%= evaluacion.archivo_evaluacion %>">Evaluacion</a>
+                    
+                    <% if (evaluacion.calificaciones.length === 0) { %>
+                        <form action="/subircalificacion" method="POST">
+                            <input type="hidden" name="evaluacion_estudiante_id" value="<%= evaluacion.id %>">
+                            <input type="number" name="puntaje" class="form-control">
+                            <input type="submit" value="Calificar" class="btn btn-success">
+                        </form>
+                        <p>0/100</p>
+                        <% } else { %>
+                            <p><%= evaluacion.calificaciones[0].puntaje %>/100</p>
+                        <% } %>
+                        
+                </div>
+            <% }) %>
+
+        </article>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+</body>
+
+<style>
+    .evaluacion{
+        width: 300px;
+        margin: 10px;
+        padding: 20px;
+        background-color: rgb(12, 33, 53);
+        color: aliceblue;
+        border-radius: 10px;
+    }
+
+    .evaluacion p{
+        font-weight: bold;
+        font-size: 24px;
+    }
+</style>
+</html>

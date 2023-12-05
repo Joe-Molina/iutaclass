@@ -6,8 +6,8 @@ import {
 
 const router = Router();
 
-router.get("/calificaciones", getcalificaciones);
+router.get("/calificar/:id", getcalificaciones);
 
-router.post("/subircalificacion/:evaluacion", puntuar);
+router.post("/subircalificacion", puntuar);
 
 export default router;

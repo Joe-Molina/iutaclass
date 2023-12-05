@@ -17,7 +17,7 @@ export const getEvaluaciones = async (req, res) => {
 };
 
 export const subirEvaluacion = async (req, res) => {
-  const unidad_id = req.params.id;
+  const { unidad_id } = req.body;
 
   const unidad = await Unidades.findOne({
     where: { id: unidad_id },
@@ -30,14 +30,16 @@ export const subirEvaluacion = async (req, res) => {
     },
   });
 
-  const { descripcion, archivo_evaluacion } = req.body;
+  const { descripcion } = req.body;
 
   const subirEvaluacion = await Evaluacion_estudiante.create({
     descripcion,
-    archivo_evaluacion,
+    archivo_evaluacion: req.file.filename,
     unidad_id,
     integrante_aula_id: integranteAulaId.id,
   });
 
-  res.json(subirEvaluacion);
+  //res.json(subirEvaluacion);
+
+  res.redirect("../inicio/estudiante");
 };

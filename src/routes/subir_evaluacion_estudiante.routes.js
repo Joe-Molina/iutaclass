@@ -29,6 +29,10 @@ const router = Router();
 
 //router.post("/unidades/upload/:id", upload.single("archivo"), subirEvaluacion);
 router.get("/evaluaciones", getEvaluaciones);
-router.post("/evaluaciones/crear/:id", subirEvaluacion);
+router.post(
+  "/evaluaciones/subir",
+  upload.single("archivo_evaluacion"),
+  subirEvaluacion
+);
 
 export default router;
